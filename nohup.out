@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "application.py", line 4, in <module>
+    @application.route("/")
+NameError: name 'application' is not defined
