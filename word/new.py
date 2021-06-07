@@ -1,4 +1,4 @@
-from konlpy.tag import Kkma
+from konlpy.tag import Twitter
 from sklearn.feature_extraction.text import TfidfVectorizer
 from collections import defaultdict
 from collections import Counter
@@ -11,7 +11,7 @@ cred = credentials.Certificate("./serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 sender = 'izero3127@gmail.com'
 
-kkma=Kkma()
+kkma=Twitter()
 # f=open("speech.txt",mode='r',encoding='utf-8')
 # txt=f.read()
 # f.close()
@@ -26,7 +26,7 @@ result = ""
 for doc in docs:
     if doc.to_dict()['isMe'] == True and doc.to_dict()['sender'] == sender:
         result += doc.to_dict()['diary']
-speech=kkma.sentences(result)        
+speech=kkma.nouns(result)        
 print(result)
 
 #TFIDF
