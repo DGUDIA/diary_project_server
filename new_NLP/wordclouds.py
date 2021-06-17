@@ -1,5 +1,5 @@
 from wordcloud import WordCloud, STOPWORDS
-from eunjeon import Mecab
+from konlpy.tag import Mecab
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -8,15 +8,21 @@ import matplotlib.font_manager as fm
 import re
 import collections
 
-from NLP.analysis import TextAnalysis
-
-ta = TextAnalysis('행복한 하루입니다.')
+from analysis import TextAnalysis
+data = {
+        'title' : 'Test',
+        'text' : '''
+        기분 안 좋아.
+        ''',
+        'stickers': []
+                  }
+ta = TextAnalysis(data)
 
 result = ta.text_analysis()
 
+print(result)
 words = result['word_count']
-
-# print(words)
+word_dict = {i:v for i,v,m in word_count }
 
 
 spwords = set(STOPWORDS)
@@ -24,7 +30,7 @@ spwords = set(STOPWORDS)
 wordcloud = WordCloud(max_font_size=200, font_path='/content/drive/My Drive/Colab Notebooks/malgun.ttf',
                      stopwords=spwords,
                      background_color='#FFFFFF',
-                     width=1200,height=800).generate_from_frequencies(words)
+                     width=1200,height=800).generate_from_frequencies(word_dict)
 
 
 plt.figure(figsize = (8, 8), facecolor = None) 

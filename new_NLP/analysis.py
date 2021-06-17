@@ -1,14 +1,19 @@
-#-*- coding: utf-8 -*-
 import os
 from collections import Counter
 
-from eunjeon import Mecab
+from konlpy.tag import Mecab
 import pandas as pd
 
-
 class TextAnalysis:
+    #-*- coding: utf-8 -*- 
+    import os
+    from collections import Counter
+
+    from konlpy.tag import Mecab
+    import pandas as pd
 
     mecab = Mecab()
+    # mecab = Mecab(os.path.join(os.path.dirname()
     emotion_idx = {
         'happy': 1, 'sad': 2, 'delight': 3, 'boring': 4, 'angry': 5, 'surprise': 6, 'horror': 7
     }
@@ -29,7 +34,7 @@ class TextAnalysis:
     minus3 = []
 
     # def __init__(self, text):
-    #     self.text = text
+        # self.text = text
     def __init__(self, data):
         self.content = data['text']
         self.title = data['title']
@@ -57,7 +62,7 @@ class TextAnalysis:
     def get_pos(cls):
         if cls.pos:
             return cls.pos
-        pos = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pos.txt'), "r", encoding="cp949").read().split('\n')        
+        pos = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pos.txt'), "r", encoding="UTF-8").read().split('\n')        
         pos.pop()
 
         cls.pos = pos
@@ -67,7 +72,7 @@ class TextAnalysis:
     def get_neg(cls):
         if cls.neg:
             return cls.neg
-        neg = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'neg.txt'), "r", encoding="cp949").read().split('\n')
+        neg = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'neg.txt'), "r", encoding="UTF-8").read().split('\n')
 
         neg.pop()
 
@@ -326,7 +331,7 @@ if __name__ == "__main__":
     data = {
         'title' : 'Test',
         'text' : '''
-        후하암 졸려
+        시험 망해서 슬퍼
         ''',
         'stickers': []
     }
@@ -340,13 +345,13 @@ if __name__ == "__main__":
     elif b['feel'][0][0] == 2:
         feel = "슬픔"
     elif b['feel'][0][0] == 4:
-        feel = "지루"
+        feel = "중립"
     elif b['feel'][0][0] == 5:
         feel = "분노"
-    elif b['feel'][0][0] == 6:
-        feel = "공포"
+    elif b['feel'][0][0] == 7:
+        feel = "불안"
     else:
-        feel = "중립"
+        feel = "예외"
     print(feel)
     for num, i in enumerate(b['word_count']):
         word_list.append(i[0])

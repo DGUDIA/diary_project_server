@@ -116,6 +116,8 @@ def put_happy():
     feeling = '행복'
     naverBlogOpenAPI('행복', 1, 15, feeling)
     twitterAPI('행복', 1, feeling)
+    naverBlogOpenAPI('기분 좋은', 1, 15, feeling)
+    twitterAPI('기분 좋은', 1, feeling)
     
 def put_anxious():
     feeling = '불안'

@@ -19,11 +19,11 @@ def get_naver(feelings):
     elif feelings == '중립':
         naver_idx = random.sample(list(range(60, 75)), 10)
     elif feelings == '행복':
-        naver_idx = random.sample(list(range(75, 90)), 10)
+        naver_idx = random.sample(list(range(75, 105)), 10)
     elif feelings == '불안':
-        naver_idx = random.sample(list(range(90, 135)), 10)
+        naver_idx = random.sample(list(range(105, 150)), 10)
     elif feelings == '분노':
-        naver_idx = random.sample(list(range(135, 180)), 10)
+        naver_idx = random.sample(list(range(150, 195)), 10)
     else:
         return "감정을 분류하는데 실패했습니다."
 
@@ -89,3 +89,5 @@ def get_twitter(feelings):
 
 #print(get_naver('슬픔'))
 #print(get_twitter('분노'))
+
+

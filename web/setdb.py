@@ -73,10 +73,10 @@ def naverBlogOpenAPI(x, y, z, w):
 
     for i in range(1, y + 1):
         if i == 1:
-            url = "https://openapi.naver.com/v1/search/blog?query=" + keyword + "&display=" + str(z) + "&start=" + str(
+            url = "http://openapi.naver.com/v1/search/blog?query=" + keyword + "&display=" + str(z) + "&start=" + str(
                 i)
         elif i > 1:
-            url = "https://openapi.naver.com/v1/search/blog?query=" + keyword + "&display=" + str(z) + "&start=" + str(
+            url = "http://openapi.naver.com/v1/search/blog?query=" + keyword + "&display=" + str(z) + "&start=" + str(
                 (i - 1) * z + 1)
 
         result = requests.get(urlparse(url).geturl(),
@@ -121,6 +121,8 @@ def put_happy():
     feeling = '행복'
     naverBlogOpenAPI('행복', 1, 15, feeling)
     twitterAPI('행복', 1, feeling)
+    naverBlogOpenAPI('기분 좋은', 1, 15, feeling)
+    twitterAPI('기분 좋은', 1, feeling)
 
 
 def put_anxious():

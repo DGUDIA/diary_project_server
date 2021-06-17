@@ -1,23 +1,19 @@
 from flask import Flask, redirect, url_for, request, render_template, make_response, session, escape, Response
-import pymysql
 import csv
 import json
 from datetime import datetime
-from chat.chat_tomysql import chat_to_mysql
-from chat.read_db import read_db
 from functools import wraps
 import sys
 import os
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-import hashlib
 import sys
 import os
 import time
 from pytz import timezone
 from NLP import Diary2
-import web
+from NLP import senti
 from web.db import get_naver, get_twitter
 from jinja2 import Environment, FileSystemLoader
 from flask import Flask, render_template, redirect, url_for
@@ -162,7 +158,7 @@ def index():
     diary = request.form['diary']
     email = request.form['email']
     print(email)
-    final = to_fire_answer(diary, False, 'izero3127@gmail.com', 'link')
+    final = to_fire_answer(diary, False, email, 'link')
     fire_calender(final, email)
     total_diary(email)
     return time, email
@@ -183,6 +179,7 @@ def to_fire_answer(diary, isMe, sender, link):
     
     
     emotion = sentence_sentiment(str(diary))
+    emotion_dict = {'슬픔':0, '중립':1, '행복':2, '불안':3, '분노':4, '예외':5}
                                  
     if emotion == '슬픔':
         link = 'http://13.209.152.251:52674/sad/{0}/{1}'.format(sender, 1)
@@ -197,7 +194,7 @@ def to_fire_answer(diary, isMe, sender, link):
                                  
     doc_ref = db.collection(u'messages')
     doc_ref.add({
-        u'diary': str(sentence_sentiment(str(diary))),
+        u'diary': str(senti.sentence_picker(int(emotion_dict[emotion]))),
         u'isMe': bool(isMe),
         u'sender': str(sender),
         u'timestamp': str(KST.strftime(fmt)),
