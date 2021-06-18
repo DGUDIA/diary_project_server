@@ -140,16 +140,7 @@ display: block;}
     var name = 'http://naver.com';
 </script>
 
-<script type="text/javascript" src="/../js/jquery-3.5.1.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $("#header").load("insta_anger.html", function () {
-        //페이지 별로 다른 메뉴 css 적용도 가능
-            document.getElementById("sub_nav").classList.add("show");
-        });
-    })
-</script>
 </head>
 
 
@@ -215,27 +206,21 @@ display: block;}
 
 
 <br><br><br><br>
-</section>    
-    
-    <!--<h1><img src="https://user-images.githubusercontent.com/71917474/120525039-a6b0eb80-c412-11eb-8f0c-4d80c3e47f14.jpg" align="center" width="10%" height="10%" /> Instagram</h1>-->
-<!--<img src="" align="center" />-->
+</section>
 
 <section id="content3" style="margin-bottom:0;">
 <h1><img src="https://user-images.githubusercontent.com/71917474/120525039-a6b0eb80-c412-11eb-8f0c-4d80c3e47f14.jpg" align="center" width="10%" height="10%" /> Instagram</h1>
 
-    <embed src="https://www.instagram.com/p/CPx0_kvFuyB/embed/" display="inline" frameborder="0" scrolling="no" allowtransparency="true" height="1000px" width="50%"></iframe>
+<br><br>
+{% for link in insta %}
+<embed src= "{{ link }}" display="inline" frameborder="0" scrolling="no" allowtransparency="true" height="1000px" width="50%" >
 
-    <embed src="https://www.instagram.com/p/CP4WfO5pJeW/embed/" display="inline" frameborder="0" scrolling="no" allowtransparency="true" height="1000px" width="50%"></iframe>
-
-    <embed src="https://www.instagram.com/p/CP2XE0GJwLM/embed/" display="inline" frameborder="0" scrolling="no" allowtransparency="true" height="1000px" width="50%"></iframe>
-
-    <embed src="https://www.instagram.com/p/CP3Qix1NTUH/embed/" display="inline" frameborder="0" scrolling="no" allowtransparency="true" height="1000px" width="50%"></iframe>
-
-    <embed src="https://www.instagram.com/p/CAFosinFvkz/embed/" display="inline" frameborder="0" scrolling="no" allowtransparency="true" height="1000px" width="50%"></iframe>
-
-<!--    -->
-</section>    
+{% endfor %}
+    
+</section>
 </div>
 </body>
+
+
 
 </html>

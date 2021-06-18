@@ -12,7 +12,7 @@ class TextAnalysis:
     from konlpy.tag import Mecab
     import pandas as pd
 
-    mecab = Mecab()
+    mecab = Mecab(os.path.join(os.path.dirname(os.path.abspath(__file__))))
     # mecab = Mecab(os.path.join(os.path.dirname()
     emotion_idx = {
         'happy': 1, 'sad': 2, 'delight': 3, 'boring': 4, 'angry': 5, 'surprise': 6, 'horror': 7

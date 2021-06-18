@@ -182,15 +182,15 @@ def to_fire_answer(diary, isMe, sender, link):
     emotion = sentence_sentiment(str(diary))
                                  
     if emotion == '슬픔':
-        link = 'http://13.209.152.251:52674/sad/{0}/{1}'.format(sender, 1)
+        link = 'http://54.180.2.12:57349/sad/{0}/{1}'.format(sender, 1)
     elif emotion =='행복':
-        link = 'http://13.209.152.251:52674/happy/{0}/{1}'.format(sender, 1)
+        link = 'http://54.180.2.12:57349/happy/{0}/{1}'.format(sender, 1)
     elif emotion =='분노':
-        link = 'http://13.209.152.251:52674/angry/{0}/{1}'.format(sender, 1)
+        link = 'http://54.180.2.12:57349/angry/{0}/{1}'.format(sender, 1)
     elif emotion =='중립':
-        link = 'http://13.209.152.251:52674/neutral/{0}/{1}'.format(sender, 1)
+        link = 'http://54.180.2.12:57349/neutral/{0}/{1}'.format(sender, 1)
     else:
-        link = 'http://13.209.152.251:52674/anxious/{0}/{1}'.format(sender, 1)
+        link = 'http://54.180.2.12:57349/anxious/{0}/{1}'.format(sender, 1)
                                  
     doc_ref = db.collection(u'messages')
     doc_ref.add({

@@ -22,7 +22,7 @@ def create_db():
 
 def twitterAPI(x, y, z):
     import tweepy
-    import config
+    from web import config
     import sqlite3
 
     conn = sqlite3.connect("twitter.db", isolation_level=None)
@@ -73,10 +73,10 @@ def naverBlogOpenAPI(x, y, z, w):
 
     for i in range(1, y + 1):
         if i == 1:
-            url = "http://openapi.naver.com/v1/search/blog?query=" + keyword + "&display=" + str(z) + "&start=" + str(
+            url = "https://openapi.naver.com/v1/search/blog?query=" + keyword + "&display=" + str(z) + "&start=" + str(
                 i)
         elif i > 1:
-            url = "http://openapi.naver.com/v1/search/blog?query=" + keyword + "&display=" + str(z) + "&start=" + str(
+            url = "https://openapi.naver.com/v1/search/blog?query=" + keyword + "&display=" + str(z) + "&start=" + str(
                 (i - 1) * z + 1)
 
         result = requests.get(urlparse(url).geturl(),
@@ -94,9 +94,8 @@ def naverBlogOpenAPI(x, y, z, w):
             c.execute("INSERT INTO naver (content, title, link, postdate, keyword, feeling) VALUES(?,?,?,?,?,?)",
                       (de, ti, li, po, keyword, feeling))
 
+    conn.commit()
     conn.close()
-
-
 # 디비 내용 갱신
 
 def put_sad():
