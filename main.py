@@ -155,7 +155,7 @@ def get_image():
 
 @app.route('/images/<sender>')
 def get_images(sender):
-    return render_template('word_cloud.html', sender = sender, filename = sender.replace('@','').replace('.','')+'.png')
+    return render_template('word_cloud.html', sender = sender, filename = sender.replace('@','').replace('.',''))
    
 
 
